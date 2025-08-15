@@ -1,3 +1,7 @@
+[![GitHub Pages](https://img.shields.io/badge/Docs-121013?logo=github&logoColor=white)](../README.md)
+[![GitHub Pages](https://img.shields.io/badge/Main-121013)](./README.md)
+
+
 # Docs #
 
 Simple Test utility.

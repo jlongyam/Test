@@ -1,8 +1,11 @@
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/jlongyam/Test)
-[![NPM](https://nodei.co/npm/@jlongyam/test.svg?style=flat&data=n,v,d&color=blue)](https://www.npmjs.com/package/@jlongyam/test)
+[![ReadMe](https://img.shields.io/badge/ReadMe-018EF5?logo=readme&logoColor=fff)](#)
+
 # Test #
 
 Simple Test utility.
+
+[![NPM](https://nodei.co/npm/@jlongyam/test.svg?style=flat&data=n,v,d&color=blue)](https://www.npmjs.com/package/@jlongyam/test)
 
 ### Script
 
@@ -53,3 +56,6 @@ Test
 ## Usage ##
 
 More usage see [docs](./docs/README.md)
+
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](https://nodejs.org/en/learn)
