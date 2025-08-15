@@ -1,0 +1,24 @@
+{
+  "name": "@jlongyam/test",
+  "version": "0.1.0",
+  "description": "Simple Test utility ",
+  "keywords": [
+    "test",
+    "simple"
+  ],
+  "homepage": "https://github.com/jlongyam/Test#readme",
+  "bugs": {
+    "url": "https://github.com/jlongyam/Test/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlongyam/Test.git"
+  },
+  "license": "MIT",
+  "author": "jlongyam",
+  "type": "module",
+  "main": "./src/Test.js",
+  "scripts": {
+    "test": "node ./test/test.js"
+  }
+}
