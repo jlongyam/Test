@@ -1,4 +1,4 @@
-import Test from "../src/Test.js";
+import Test from "../../src/Test.js";
 
 const { describe, it, assert, run } = Test();
 

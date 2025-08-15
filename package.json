@@ -19,9 +19,26 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "./src",
+    "./dist"
+  ],
   "type": "module",
   "main": "./src/Test.js",
   "scripts": {
-    "test": "node ./test/test.js"
+    "build:buble": "node ./build/buble.js",
+    "build:babel": "node ./build/babel.js",
+    "build": "npm run build:buble && npm run build:babel",
+    "test:es6": "node ./test/es6/test.js",
+    "test:es5": "node ./test/es5/test.js",
+    "test": "npm run test:es6 && npm run test:es5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/plugin-transform-modules-systemjs": "^7.27.1",
+    "@babel/preset-env": "^7.28.3",
+    "buble": "^0.20.0",
+    "fs-plus": "^3.1.1",
+    "systemjs": "^6.15.1"
   }
 }
