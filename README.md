@@ -1,3 +1,4 @@
+[![NPM](https://nodei.co/npm/@jlongyam/test.svg?style=flat&data=n,v,d&color=blue)](https://www.npmjs.com/package/@jlongyam/test)
 # Test #
 
 Simple Test utility.
