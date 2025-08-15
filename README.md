@@ -48,3 +48,7 @@ Test
 ✖ should 4 - Failed
 ✔ should 0
 ```
+
+## Usage ##
+
+See [docs](./docs/README.md)
