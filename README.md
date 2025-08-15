@@ -1,3 +1,4 @@
+[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/jlongyam/Test)
 [![NPM](https://nodei.co/npm/@jlongyam/test.svg?style=flat&data=n,v,d&color=blue)](https://www.npmjs.com/package/@jlongyam/test)
 # Test #
 
@@ -51,4 +52,4 @@ Test
 
 ## Usage ##
 
-See [docs](./docs/README.md)
+More usage see [docs](./docs/README.md)
