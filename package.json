@@ -6,7 +6,7 @@
     "test",
     "simple"
   ],
-  "homepage": "https://github.com/jlongyam/Test#readme",
+  "homepage": "https://jlongyam.github.io/Test/",
   "bugs": {
     "url": "https://github.com/jlongyam/Test/issues"
   },
@@ -21,7 +21,8 @@
   },
   "files": [
     "./src",
-    "./dist"
+    "./dist",
+    "./docs"
   ],
   "exports": {
     "import": "./src/Test.js",
