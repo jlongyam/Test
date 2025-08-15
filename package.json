@@ -23,6 +23,10 @@
     "./src",
     "./dist"
   ],
+  "exports": {
+    "import": "./src/Test.js",
+    "require": "./dist/Test.cjs"
+  },
   "type": "module",
   "main": "./src/Test.js",
   "scripts": {
@@ -31,14 +35,18 @@
     "build": "npm run build:buble && npm run build:babel",
     "test:es6": "node ./test/es6/test.js",
     "test:es5": "node ./test/es5/test.js",
-    "test": "npm run test:es6 && npm run test:es5"
+    "test:es5:cjs": "node ./test/es5/test.cjs",
+    "test": "npm run test:es6 && npm run test:es5 && npm run test:es5:cjs"
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
     "@babel/plugin-transform-modules-systemjs": "^7.27.1",
     "@babel/preset-env": "^7.28.3",
     "buble": "^0.20.0",
-    "fs-plus": "^3.1.1",
+    "fs-plus": "^3.1.1"
+  },
+  "dependencies": {
+    "requirejs": "^2.3.7",
     "systemjs": "^6.15.1"
   }
 }
