@@ -14,7 +14,7 @@ const basePath = url.pathToFileURL(process.cwd()).href;
 setBaseUrl(System, basePath);
 applyImportMap(System, {
   imports: {
-    "Test": "./dist/Test.js"
+    "Test": "./node_modules/@jlongyam/test/dist/Test.js"
   }
 });
 
