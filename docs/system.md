@@ -53,7 +53,7 @@ run();
     <script type="systemjs-importmap">
       {
         "imports": {
-          "Test": "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.3.0/dist/Test.min.js"
+          "Test": "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.3.2/dist/Test.min.js"
         }
       }
     </script>
