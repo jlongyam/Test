@@ -47,9 +47,7 @@
     "@babel/plugin-transform-modules-systemjs": "^7.27.1",
     "@babel/preset-env": "^7.28.3",
     "buble": "^0.20.0",
-    "fs-plus": "^3.1.1"
-  },
-  "dependencies": {
+    "fs-plus": "^3.1.1",
     "requirejs": "^2.3.7",
     "systemjs": "^6.15.1"
   }
