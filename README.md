@@ -1,7 +1,6 @@
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/jlongyam/Test)
 [![ReadMe](https://img.shields.io/badge/ReadMe-018EF5?logo=readme&logoColor=fff)](#)
 [![NPM](https://nodei.co/npm/@jlongyam/test.svg?style=flat&data=n,v,d&color=blue)](https://www.npmjs.com/package/@jlongyam/test)
-[![Node.js Package](https://github.com/jlongyam/Test/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/jlongyam/Test/actions/workflows/npm-publish.yml)
 
 # Test #
 
