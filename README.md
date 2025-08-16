@@ -1,13 +1,18 @@
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/jlongyam/Test)
 [![ReadMe](https://img.shields.io/badge/ReadMe-018EF5?logo=readme&logoColor=fff)](#)
+[![NPM](https://nodei.co/npm/@jlongyam/test.svg?style=flat&data=n,v,d&color=blue)](https://www.npmjs.com/package/@jlongyam/test)
 
 # Test #
 
 Simple Test utility.
 
-[![NPM](https://nodei.co/npm/@jlongyam/test.svg?style=flat&data=n,v,d&color=blue)](https://www.npmjs.com/package/@jlongyam/test)
+### Install ###
 
-### Script
+```shell
+npm i @jlongyam/test -D
+```
+
+### Script ###
 
 __`test/test.js`__
 
@@ -40,7 +45,7 @@ __`package.json`__:
 }
 ```
 
-### Terminal
+### Terminal ###
 
 ```shell
 npm test

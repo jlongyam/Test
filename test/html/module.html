@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test: module</title>
+  </head>
+  <body>
+    <script type="module">
+      import Test from "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.3.0/src/Test.min.js";
+      
+      const { describe, it, assert, run } = Test();
+
+      describe("Test", () => {
+        it("should 5", () => {
+          assert(2 + 3 === 5);
+        });
+        it("should 4", () => {
+          assert(-1 + 5 === 5);
+        });
+        it("should 0", () => {
+          assert(0 + 0 === 0);
+        });
+      });
+
+      run();
+    </script>
+  </body>
+</html>

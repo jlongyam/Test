@@ -25,8 +25,11 @@
     "./docs"
   ],
   "exports": {
-    "import": "./src/Test.js",
-    "require": "./dist/Test.cjs"
+    ".": {
+      "import": "./src/Test.js",
+      "require": "./dist/Test.cjs"
+    },
+    "./system": "./dist/Test.js"
   },
   "type": "module",
   "main": "./src/Test.js",
