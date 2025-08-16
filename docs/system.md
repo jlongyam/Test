@@ -10,7 +10,7 @@ import systemjs from 'systemjs';
 
 const { System, applyImportMap, setBaseUrl } = systemjs;
 const basePath = url.pathToFileURL(process.cwd()).href;
-console.log(basePath)
+
 setBaseUrl(System, basePath);
 applyImportMap(System, {
   imports: {
