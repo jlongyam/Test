@@ -28,11 +28,22 @@ async function compileToCJS(data) {
     resolve(output)
   })
 }
+async function compileToAMD(data) {
+  return new Promise((resolve)=> {
+    let output = babel.transform(data, {
+      presets: ['@babel/preset-env'],
+      plugins: ['@babel/plugin-transform-modules-amd']
+    }).code;
+    resolve(output)
+  })
+}
 try {
   let code = await compile(input);
   fs.writeFileSync(project + '/dist/Test.js', code, 'utf-8');
   let code_cjs = await compileToCJS(input);
   fs.writeFileSync(project+'/dist/Test.cjs', code_cjs, 'utf-8');
+  let code_amd = await compileToAMD(input);
+  fs.writeFileSync(project+'/dist/Test.amd.js', code_amd, 'utf-8');
 } catch (e) {
   console.error(e)
 }
