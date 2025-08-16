@@ -7,5 +7,6 @@ Simple Test utility.
 How to use `Test.js` using another methods 
 
 - Using ES module in HTML, [see](./module.md)
-- Using Node commonjs, [see](./common.md)
-- Using Systemjs, [see](./system.md)
+- Using Node CommonJS, [see](./common.md)
+- Using SystemJS, [see](./system.md)
+- Using AMD RequireJS, [see](./require.md)

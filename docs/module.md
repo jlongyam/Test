@@ -4,7 +4,7 @@ Using Test.js as **ES6 Module** in HTML
 
 ```html
 <script type="module">
-  import Test from "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.3.2/src/Test.min.js";
+  import Test from "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.4.0/src/Test.js";
   
   const { describe, it, assert, run } = Test();
 

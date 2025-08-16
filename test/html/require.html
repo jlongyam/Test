@@ -11,10 +11,13 @@
   </head>
   <body>
     <script>
-      require(["../../dist/Test.amd.js"], function (Test) {
-
-        const { describe, it, assert, run } = Test.default();
+      // require(["../../dist/Test.amd.js"], function (Test) {
+      require([
+        "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.4.0/dist/Test.amd.js",
+      ], function (Test) {
         
+        const { describe, it, assert, run } = Test.default();
+
         describe("Test", () => {
           it("should 5", () => {
             assert(2 + 3 === 5);

@@ -1,3 +1,10 @@
+# Sytemjs
+
+Using Test.js as **AMD**
+
+## HTML
+
+```html
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -5,28 +12,15 @@
     <meta http-equiv="Content-Type" content="text/html" />
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test: system</title>
-    <!-- <script src="../../node_modules/systemjs/dist/system.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.15.1/dist/system.min.js"></script>
+    <title>Test: require</title>
+    <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.7/require.min.js"></script>
   </head>
   <body>
-    <script type="systemjs-importmap">
-      {
-        "imports": {
-          "Test": "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.4.0/dist/Test.js"
-        }
-      }
-    </script>
-    <!-- <script type="systemjs-importmap">
-      {
-        "imports": {
-          "Test": "../../dist/Test.js"
-        }
-      }
-    </script> -->
     <script>
-      (async function () {
-        const Test = await System.import(["Test"]);
+      require([
+        "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.4.0/dist/Test.amd.js",
+      ], function (Test) {
+        
         const { describe, it, assert, run } = Test.default();
 
         describe("Test", () => {
@@ -42,7 +36,8 @@
         });
 
         run();
-      })();
+      });
     </script>
   </body>
 </html>
+```
