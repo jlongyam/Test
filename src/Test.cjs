@@ -31,7 +31,6 @@ function Test() {
     }
     return true;
   }
-
   function assert(condition, message = "Failed") {
     if (typeof window !== "undefined") {
       if (Array.isArray(condition) && condition.length === 2) {
@@ -45,9 +44,9 @@ function Test() {
         }
       } else {
         if (!condition) {
-          throw new Error(message + ` Expected ${String(condition)}`);
-        }
+        throw new Error(message + ` Expected ${String(condition)}`);
       }
+    }
     } else {
       if (Array.isArray(condition) && condition.length === 2) {
         if (!deepCompare(condition[0], condition[1])) {
@@ -56,16 +55,15 @@ function Test() {
               ` Expected ${JSON.stringify(
                 condition[0]
               )} equals ${JSON.stringify(condition[1])}`
-          );
-        }
+        );
+      }
       } else {
         if (!condition) {
           throw new Error(message + ` Expected ${String(condition)}`);
-        }
-      }
     }
   }
-
+}
+  }
   function run() {
     if (!cases || cases.length === 0) {
       console.warn("Zero cases");
@@ -75,9 +73,8 @@ function Test() {
     if (typeof window !== "undefined") {
       const resultsContainer =
         document.getElementById("test-results") ||
-        document.createElement("pre");
+        document.createElement("div");
       resultsContainer.id = "test-results";
-      resultsContainer.style.fontSize = "125%";
       if (!document.getElementById("test-results")) {
         document.body.appendChild(resultsContainer);
       }
@@ -124,3 +121,6 @@ function Test() {
   }
   return { describe, it, assert };
 }
+
+
+module.exports = Test
