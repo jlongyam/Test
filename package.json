@@ -37,9 +37,11 @@
   "scripts": {
     "build:module": "node ./build/module.js",
     "build:legacy": "node ./build/legacy.js",
-    "build:other": "node ./build/other.js",
+    "build:other": "node ./build/other.js && npm run build:module && npm run build:legacy",
     "build:test": "node ./build/test/terminal.js && node ./build/test/browser.js",
-    "build": "npm run build:module && npm run build:legacy && npm run build:other && npm run build:test",
+    "build": "npm run build:other && npm run build:test",
+    "pretty": "node build/test/pretty.js",
+    "minify": "node build/minify.js",
     "test:cjs": "node ./test/terminal/common.cjs",
     "test:mjs": "node ./test/terminal/module.mjs",
     "test:html": "http-server -c-1 -p 8080 & opener http://localhost:8080/test/html",
@@ -53,6 +55,7 @@
     "fs-plus": "^3.1.1",
     "http-server": "^14.1.1",
     "prettier": "^3.6.2",
-    "systemjs": "^6.15.1"
+    "systemjs": "^6.15.1",
+    "terser": "^5.43.1"
   }
 }
