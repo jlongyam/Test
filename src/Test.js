@@ -1,14 +1,63 @@
 function Test() {
   let cases = [];
-  function describe(description, fn) {
-    cases = [];
-    currentDescription = description;
-    fn();
-    run();
-  }
-  let currentDescription = "";
-  function it(description, fn) {
-    cases.push({ description: currentDescription + " - " + description, fn });
+  let currentDescription = '';
+  function run() {
+    if (!cases || cases.length === 0) {
+      console.warn("Zero cases");
+      return;
+    }
+    let currentDescribe = null;
+    if (typeof window !== "undefined") {
+      const resultsContainer =
+        document.getElementById("test-results") ||
+        document.createElement("pre");
+      resultsContainer.id = "test-results";
+      resultsContainer.style.fontSize = "110%";
+      if (!document.getElementById("test-results")) {
+        document.body.appendChild(resultsContainer);
+      }
+      cases.forEach((testCase) => {
+        const describeText = testCase.description.split(" - ")[0];
+        const itText = testCase.description.split(" - ")[1];
+        if (currentDescribe !== describeText) {
+          currentDescribe = describeText;
+          const groupHeader = document.createElement("h2");
+          groupHeader.textContent = currentDescribe;
+          resultsContainer.appendChild(groupHeader);
+        }
+        const resultElement = document.createElement("p");
+        try {
+          testCase.fn();
+          resultElement.textContent = `✔ ${itText}`;
+          resultElement.style.color = "green";
+        } catch (error) {
+          resultElement.textContent = `✖ ${itText} - ${error.message}`;
+          resultElement.style.color = "red";
+        }
+        resultsContainer.appendChild(resultElement);
+      });
+      return;
+    }
+    cases.forEach((testCase) => {
+      if (currentDescribe !== testCase.description.split(" - ")[0]) {
+        if (currentDescribe !== null) {
+          console.groupEnd();
+        }
+        currentDescribe = testCase.description.split(" - ")[0];
+        console.group(currentDescribe);
+      }
+      try {
+        testCase.fn();
+        console.log(`\x1b[32m✔ ${testCase.description}\x1b[0m`);
+      } catch (error) {
+        console.error(
+          `\x1b[31m✖ ${testCase.description} - ${error.message}\x1b[0m`
+        );
+      }
+    });
+    if (currentDescribe !== null) {
+      console.groupEnd();
+    }
   }
   function deepCompare(obj1, obj2) {
     if (
@@ -31,8 +80,16 @@ function Test() {
     }
     return true;
   }
-
-  function assert(condition, message = "Failed") {
+  function describe(description, fn) {
+    cases = [];
+    currentDescription = description;
+    fn();
+    run();
+  }
+  function it(description, fn) {
+    cases.push({ description: currentDescription + " - " + description, fn });
+  }
+  function assert(condition, message = "") {
     if (typeof window !== "undefined") {
       if (Array.isArray(condition) && condition.length === 2) {
         if (!deepCompare(condition[0], condition[1])) {
@@ -66,61 +123,5 @@ function Test() {
     }
   }
 
-  function run() {
-    if (!cases || cases.length === 0) {
-      console.warn("Zero cases");
-      return;
-    }
-    let currentDescribe = null;
-    if (typeof window !== "undefined") {
-      const resultsContainer =
-        document.getElementById("test-results") ||
-        document.createElement("pre");
-      resultsContainer.id = "test-results";
-      resultsContainer.style.fontSize = "125%";
-      if (!document.getElementById("test-results")) {
-        document.body.appendChild(resultsContainer);
-      }
-      cases.forEach((testCase) => {
-        if (currentDescribe !== testCase.description.split(" - ")[0]) {
-          currentDescribe = testCase.description.split(" - ")[0];
-          const groupHeader = document.createElement("h2");
-          groupHeader.textContent = currentDescribe;
-          resultsContainer.appendChild(groupHeader);
-        }
-        const resultElement = document.createElement("p");
-        try {
-          testCase.fn();
-          resultElement.textContent = `✔ ${testCase.description}`;
-          resultElement.style.color = "green";
-        } catch (error) {
-          resultElement.textContent = `✖ ${testCase.description} - ${error.message}`;
-          resultElement.style.color = "red";
-        }
-        resultsContainer.appendChild(resultElement);
-      });
-      return;
-    }
-    cases.forEach((testCase) => {
-      if (currentDescribe !== testCase.description.split(" - ")[0]) {
-        if (currentDescribe !== null) {
-          console.groupEnd();
-        }
-        currentDescribe = testCase.description.split(" - ")[0];
-        console.group(currentDescribe);
-      }
-      try {
-        testCase.fn();
-        console.log(`\x1b[32m✔ ${testCase.description}\x1b[0m`);
-      } catch (error) {
-        console.error(
-          `\x1b[31m✖ ${testCase.description} - ${error.message}\x1b[0m`
-        );
-      }
-    });
-    if (currentDescribe !== null) {
-      console.groupEnd();
-    }
-  }
   return { describe, it, assert };
 }

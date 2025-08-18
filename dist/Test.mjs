@@ -126,4 +126,4 @@ function Test() {
   return { describe, it, assert };
 }
 
-module.exports = Test
+export default Test
