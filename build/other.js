@@ -7,9 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 let project = dirname(__dirname);
-let input = fs.readFileSync(project + '/stage/Test.js', 'utf-8');
+let input = fs.readFileSync(project + '/dist/Test.mjs', 'utf-8');
 
-async function compile(data) {
+async function compileSYS(data) {
   return new Promise((resolve)=> {
     let output = babel.transform(data, {
       presets: ['@babel/preset-env'],
@@ -18,16 +18,7 @@ async function compile(data) {
     resolve(output)
   })
 }
-async function compileToCJS(data) {
-  return new Promise((resolve)=> {
-    let output = babel.transform(data, {
-      presets: ['@babel/preset-env'],
-      moduleIds: true,
-      moduleId: 'Test'
-    }).code;
-    resolve(output)
-  })
-}
+
 async function compileToAMD(data) {
   return new Promise((resolve)=> {
     let output = babel.transform(data, {
@@ -37,13 +28,12 @@ async function compileToAMD(data) {
     resolve(output)
   })
 }
+
 try {
-  let code = await compile(input);
-  fs.writeFileSync(project + '/dist/Test.js', code, 'utf-8');
-  let code_cjs = await compileToCJS(input);
-  fs.writeFileSync(project+'/dist/Test.cjs', code_cjs, 'utf-8');
+  let code_sys = await compileSYS(input);
+  fs.writeFileSync(project + '/dist/system/Test.js', code_sys, 'utf-8');
   let code_amd = await compileToAMD(input);
-  fs.writeFileSync(project+'/dist/Test.amd.js', code_amd, 'utf-8');
+  fs.writeFileSync(project+'/dist/amd/Test.js', code_amd, 'utf-8');
 } catch (e) {
   console.error(e)
 }

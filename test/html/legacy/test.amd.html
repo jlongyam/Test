@@ -5,10 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html" />
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>test: directly</title>
-    <script src="../../dist/Test.js"></script>
+    <title>test: amd</title>
+    <script src="./lib/require.js"></script>
   </head>
   <body>
-    <script src="./directly.js"></script>
+    <script>
+      requirejs.config({
+        paths: {
+          'Test': '../../../dist/amd/Test'
+        }
+      })
+      requirejs(['./test.amd'])
+    </script>
   </body>
 </html>

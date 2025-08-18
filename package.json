@@ -27,16 +27,23 @@
     ".": {
       "import": "./dist/Test.mjs",
       "require": "./dist/Test.cjs"
-    }
+    },
+    "./iife": "./dist/Test.js",
+    "./system": "./dist/system/Test.js",
+    "./amd": "./dist/amd/Test.js"
   },
   "type": "module",
   "main": "./src/Test.js",
   "scripts": {
     "build:module": "node ./build/module.js",
-    "build:test": "node ./build/test/terminal.js && node ./build/test/directly.js",
     "build:legacy": "node ./build/legacy.js",
+    "build:other": "node ./build/other.js",
+    "build:test": "node ./build/test/terminal.js && node ./build/test/browser.js",
+    "build": "npm run build:module && npm run build:legacy && npm run build:other && npm run build:test",
     "test:cjs": "node ./test/terminal/common.cjs",
-    "test:mjs": "node ./test/terminal/module.mjs"
+    "test:mjs": "node ./test/terminal/module.mjs",
+    "test:html": "http-server -c-1 -p 8080 & opener http://localhost:8080/test/html",
+    "test": "npm run test:cjs && npm run test:mjs && npm run test:html"
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
@@ -44,6 +51,8 @@
     "@babel/plugin-transform-modules-systemjs": "^7.27.1",
     "@babel/preset-env": "^7.28.3",
     "fs-plus": "^3.1.1",
+    "http-server": "^14.1.1",
+    "prettier": "^3.6.2",
     "systemjs": "^6.15.1"
   }
 }

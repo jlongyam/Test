@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 let project = dirname(dirname(__dirname));
-let input = fs.readFileSync(project + '/test/html/directly.js', 'utf-8');
+let input = fs.readFileSync(project + '/test/html/test.js', 'utf-8');
 let output = {
   cjs: `const Test = require('../../dist/Test.cjs');\n${input}`,
   mjs: `import Test from '../../dist/Test.mjs';\n${input}`
