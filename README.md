@@ -7,7 +7,7 @@
 Simple Test utility.
 
 - __deepCompare__ for nested Array and Object.
-- Run automatically.
+- Automatically `run`.
 
 ### Install ###
 
