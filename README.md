@@ -6,6 +6,9 @@
 
 Simple Test utility.
 
+- __deepCompare__ for nested Array and Object.
+- Run automatically.
+
 ### Install ###
 
 ```shell
@@ -20,7 +23,7 @@ __`test/test.js`__
 import Test from "@jlongyam/test";
 
 // Only 4 keywords
-const { describe, it, assert, run } = Test();
+const { describe, it, assert } = Test();
 
 describe("Test", () => {  // Container
   it("should 5", () => {  // Section
@@ -34,7 +37,6 @@ describe("Test", () => {  // Container
   });
 });
 
-run();                    // Report
 ```
 
 __`package.json`__:
@@ -60,4 +62,38 @@ Test
 
 ## Usage ##
 
-More usage see [docs](./docs/README.md)
+How to test `Array` or `Object`:
+
+Just like `console.assert`, comparing using `===` will fail,
+
+There are two method:
+- use `String(A) === String(B)`
+- use __deepCompare__ `[A,B]` bracket.
+
+Example:
+
+```js
+it("assert ([a, b])", () => {
+  let a = [1, 2];
+  let b = [1, 2, 3];
+  a.push(3);
+  // PASS
+  assert([a, b]);
+});
+it("assert (a === b)", () => {
+  let a = [1, 2];
+  let b = [1, 2, 3];
+  a.push(3);
+  // FAIL
+  assert(a === b);
+});
+it("assert (String(a) === String(b))", () => {
+  let a = [1, 2];
+  let b = [1, 2, 3];
+  a.push(3);
+  // PASS
+  assert(String(a) === String(b));
+});
+```
+
+More usage see [DOCS](./docs/README.md)

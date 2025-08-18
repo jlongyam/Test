@@ -19,7 +19,7 @@ applyImportMap(System, {
 });
 
 const Test = await System.import(['Test']);
-const { describe, it, assert, run } = Test.default();
+const { describe, it, assert } = Test.default();
 
 describe("Test", () => {
   it("should 5", () => {
@@ -32,8 +32,6 @@ describe("Test", () => {
     assert(0+0 === 0);
   });
 });
-
-run();
 ```
 
 ## HTML
@@ -60,7 +58,7 @@ run();
     <script>
       (async function () {
         const Test = await System.import(["Test"]);
-        const { describe, it, assert, run } = Test.default();
+        const { describe, it, assert } = Test.default();
 
         describe("Test", () => {
           it("should 5", () => {
@@ -74,7 +72,6 @@ run();
           });
         });
 
-        run();
       })();
     </script>
   </body>

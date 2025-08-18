@@ -21,7 +21,7 @@ Using Test.js as **AMD**
         "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.4.0/dist/Test.amd.js",
       ], function (Test) {
         
-        const { describe, it, assert, run } = Test.default();
+        const { describe, it, assert} = Test.default();
 
         describe("Test", () => {
           it("should 5", () => {
@@ -34,8 +34,7 @@ Using Test.js as **AMD**
             assert(0 + 0 === 0);
           });
         });
-
-        run();
+        
       });
     </script>
   </body>

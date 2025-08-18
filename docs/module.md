@@ -6,7 +6,7 @@ Using Test.js as **ES6 Module** in HTML
 <script type="module">
   import Test from "https://cdn.jsdelivr.net/npm/@jlongyam/test@0.4.0/src/Test.js";
   
-  const { describe, it, assert, run } = Test();
+  const { describe, it, assert } = Test();
 
   describe("Test", () => {
     it("should 5", () => {
@@ -19,7 +19,5 @@ Using Test.js as **ES6 Module** in HTML
       assert(0 + 0 === 0);
     });
   });
-
-  run();
 </script>
 ```
