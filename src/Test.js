@@ -16,49 +16,76 @@ function Test() {
       if (!document.getElementById("test-results")) {
         document.body.appendChild(resultsContainer);
       }
-      cases.forEach((testCase) => {
+      for (let i = 0; i < cases.length; i++) {
+        const testCase = cases[i];
         const describeText = testCase.description.split(" - ")[0];
         const itText = testCase.description.split(" - ")[1];
         if (currentDescribe !== describeText) {
           currentDescribe = describeText;
           const groupHeader = document.createElement("h2");
-          groupHeader.textContent = currentDescribe;
+          setTextContent(groupHeader, currentDescribe);
           resultsContainer.appendChild(groupHeader);
         }
         const resultElement = document.createElement("p");
         try {
           testCase.fn();
-          resultElement.textContent = `✔ ${itText}`;
+          setTextContent(resultElement, getPassSymbol() + ` ${itText}`);
           resultElement.style.color = "green";
         } catch (error) {
-          resultElement.textContent = `✖ ${itText} - ${error.message}`;
+          setTextContent(resultElement, getFailSymbol() + ` ${itText} - ${error.message}`);
           resultElement.style.color = "red";
         }
         resultsContainer.appendChild(resultElement);
-      });
+      }
       return;
-    }
-    cases.forEach((testCase) => {
-      if (currentDescribe !== testCase.description.split(" - ")[0]) {
-        if (currentDescribe !== null) {
-          console.groupEnd();
+    } else {
+      for (let i = 0; i < cases.length; i++) {
+        var testCase = cases[i];
+        if (currentDescribe !== testCase.description.split(" - ")[0]) {
+          if (currentDescribe !== null && typeof console !== 'undefined') {
+            console.groupEnd();
+          }
+          currentDescribe = testCase.description.split(" - ")[0];
+          if (typeof console !== 'undefined') {
+            console.group(currentDescribe);
+          }
         }
-        currentDescribe = testCase.description.split(" - ")[0];
-        console.group(currentDescribe);
+        try {
+          testCase.fn();
+          if (typeof console !== 'undefined') {
+            console.log('\x1b[32m' + getPassSymbol() + ' ' + testCase.description + '\x1b[0m');
+          }
+        } catch (error) {
+          if (typeof console !== 'undefined') {
+            console.error(
+              '\x1b[31m' + getFailSymbol() + ' ' + testCase.description + ' - ' + error.message + '\x1b[0m'
+            );
+          }
+        }
       }
-      try {
-        testCase.fn();
-        console.log(`\x1b[32m✔ ${testCase.description}\x1b[0m`);
-      } catch (error) {
-        console.error(
-          `\x1b[31m✖ ${testCase.description} - ${error.message}\x1b[0m`
-        );
+      if (currentDescribe !== null && typeof console !== 'undefined') {
+        console.groupEnd();
       }
-    });
-    if (currentDescribe !== null) {
-      console.groupEnd();
     }
   }
+
+  // Helper function to set text content
+  function setTextContent(element, text) {
+    if (typeof element.textContent !== 'undefined') {
+      element.textContent = text;
+    } else {
+      element.innerText = text;
+    }
+  }
+
+  function getPassSymbol() {
+    return '>';
+  }
+
+  function getFailSymbol() {
+    return '!';
+  }
+
   function deepCompare(obj1, obj2) {
     if (
       typeof obj1 !== "object" ||
@@ -68,16 +95,32 @@ function Test() {
     ) {
       return obj1 === obj2;
     }
-    const keys1 = Object.keys(obj1);
-    const keys2 = Object.keys(obj2);
+
+    var keys1 = [];
+    for (var key in obj1) {
+      if (Object.prototype.hasOwnProperty.call(obj1, key)) {
+        keys1.push(key);
+      }
+    }
+
+    var keys2 = [];
+    for (var key in obj2) {
+      if (Object.prototype.hasOwnProperty.call(obj2, key)) {
+        keys2.push(key);
+      }
+    }
+
     if (keys1.length !== keys2.length) {
       return false;
     }
-    for (let key of keys1) {
-      if (!obj2.hasOwnProperty(key) || !deepCompare(obj1[key], obj2[key])) {
+
+    for (var i = 0; i < keys1.length; i++) {
+      var key = keys1[i];
+      if (!Object.prototype.hasOwnProperty.call(obj2, key) || !deepCompare(obj1[key], obj2[key])) {
         return false;
       }
     }
+
     return true;
   }
   function describe(description, fn) {
@@ -89,35 +132,35 @@ function Test() {
   function it(description, fn) {
     cases.push({ description: currentDescription + " - " + description, fn });
   }
-  function assert(condition, message = "") {
+  function assert(condition, message) {
     if (typeof window !== "undefined") {
-      if (Array.isArray(condition) && condition.length === 2) {
+      if (typeof condition === 'object' && condition !== null && typeof condition.length === 'number' && condition.length === 2) {
         if (!deepCompare(condition[0], condition[1])) {
           throw new Error(
             message +
-              ` Expected ${JSON.stringify(
+              ' Expected ' + JSON.stringify(
                 condition[0]
-              )} equals ${JSON.stringify(condition[1])}`
+              ) + ' equals ' + JSON.stringify(condition[1])
           );
         }
       } else {
         if (!condition) {
-          throw new Error(message + ` Expected ${String(condition)}`);
+          throw new Error(message + ' Expected ' + String(condition));
         }
       }
     } else {
-      if (Array.isArray(condition) && condition.length === 2) {
+      if (typeof condition === 'object' && condition !== null && typeof condition.length === 'number' && condition.length === 2) {
         if (!deepCompare(condition[0], condition[1])) {
           throw new Error(
             message +
-              ` Expected ${JSON.stringify(
+              ' Expected ' + JSON.stringify(
                 condition[0]
-              )} equals ${JSON.stringify(condition[1])}`
+              ) + ' equals ' + JSON.stringify(condition[1])
           );
         }
       } else {
         if (!condition) {
-          throw new Error(message + ` Expected ${String(condition)}`);
+          throw new Error(message + ' Expected ' + String(condition));
         }
       }
     }
@@ -125,3 +168,4 @@ function Test() {
 
   return { describe, it, assert };
 }
+

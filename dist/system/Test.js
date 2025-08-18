@@ -20,59 +20,93 @@ System.register([], function (_export, _context) {
         if (!document.getElementById("test-results")) {
           document.body.appendChild(resultsContainer);
         }
-        cases.forEach(function (testCase) {
-          var describeText = testCase.description.split(" - ")[0];
-          var itText = testCase.description.split(" - ")[1];
+        for (var i = 0; i < cases.length; i++) {
+          var _testCase = cases[i];
+          var describeText = _testCase.description.split(" - ")[0];
+          var itText = _testCase.description.split(" - ")[1];
           if (currentDescribe !== describeText) {
             currentDescribe = describeText;
             var groupHeader = document.createElement("h2");
-            groupHeader.textContent = currentDescribe;
+            setTextContent(groupHeader, currentDescribe);
             resultsContainer.appendChild(groupHeader);
           }
           var resultElement = document.createElement("p");
           try {
-            testCase.fn();
-            resultElement.textContent = "\u2714 ".concat(itText);
+            _testCase.fn();
+            setTextContent(resultElement, getPassSymbol() + " ".concat(itText));
             resultElement.style.color = "green";
           } catch (error) {
-            resultElement.textContent = "\u2716 ".concat(itText, " - ").concat(error.message);
+            setTextContent(resultElement, getFailSymbol() + " ".concat(itText, " - ").concat(error.message));
             resultElement.style.color = "red";
           }
           resultsContainer.appendChild(resultElement);
-        });
+        }
         return;
-      }
-      cases.forEach(function (testCase) {
-        if (currentDescribe !== testCase.description.split(" - ")[0]) {
-          if (currentDescribe !== null) {
-            console.groupEnd();
+      } else {
+        for (var _i = 0; _i < cases.length; _i++) {
+          var testCase = cases[_i];
+          if (currentDescribe !== testCase.description.split(" - ")[0]) {
+            if (currentDescribe !== null && typeof console !== 'undefined') {
+              console.groupEnd();
+            }
+            currentDescribe = testCase.description.split(" - ")[0];
+            if (typeof console !== 'undefined') {
+              console.group(currentDescribe);
+            }
           }
-          currentDescribe = testCase.description.split(" - ")[0];
-          console.group(currentDescribe);
+          try {
+            testCase.fn();
+            if (typeof console !== 'undefined') {
+              console.log('\x1b[32m' + getPassSymbol() + ' ' + testCase.description + '\x1b[0m');
+            }
+          } catch (error) {
+            if (typeof console !== 'undefined') {
+              console.error('\x1b[31m' + getFailSymbol() + ' ' + testCase.description + ' - ' + error.message + '\x1b[0m');
+            }
+          }
         }
-        try {
-          testCase.fn();
-          console.log("\x1B[32m\u2714 ".concat(testCase.description, "\x1B[0m"));
-        } catch (error) {
-          console.error("\x1B[31m\u2716 ".concat(testCase.description, " - ").concat(error.message, "\x1B[0m"));
+        if (currentDescribe !== null && typeof console !== 'undefined') {
+          console.groupEnd();
         }
-      });
-      if (currentDescribe !== null) {
-        console.groupEnd();
       }
+    }
+
+    // Helper function to set text content
+    function setTextContent(element, text) {
+      if (typeof element.textContent !== 'undefined') {
+        element.textContent = text;
+      } else {
+        element.innerText = text;
+      }
+    }
+    function getPassSymbol() {
+      return '>';
+    }
+    function getFailSymbol() {
+      return '!';
     }
     function deepCompare(obj1, obj2) {
       if (_typeof(obj1) !== "object" || obj1 === null || _typeof(obj2) !== "object" || obj2 === null) {
         return obj1 === obj2;
       }
-      var keys1 = Object.keys(obj1);
-      var keys2 = Object.keys(obj2);
+      var keys1 = [];
+      for (var key in obj1) {
+        if (Object.prototype.hasOwnProperty.call(obj1, key)) {
+          keys1.push(key);
+        }
+      }
+      var keys2 = [];
+      for (var key in obj2) {
+        if (Object.prototype.hasOwnProperty.call(obj2, key)) {
+          keys2.push(key);
+        }
+      }
       if (keys1.length !== keys2.length) {
         return false;
       }
-      for (var _i = 0, _keys = keys1; _i < _keys.length; _i++) {
-        var key = _keys[_i];
-        if (!obj2.hasOwnProperty(key) || !deepCompare(obj1[key], obj2[key])) {
+      for (var i = 0; i < keys1.length; i++) {
+        var key = keys1[i];
+        if (!Object.prototype.hasOwnProperty.call(obj2, key) || !deepCompare(obj1[key], obj2[key])) {
           return false;
         }
       }
@@ -90,26 +124,25 @@ System.register([], function (_export, _context) {
         fn: fn
       });
     }
-    function assert(condition) {
-      var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+    function assert(condition, message) {
       if (typeof window !== "undefined") {
-        if (Array.isArray(condition) && condition.length === 2) {
+        if (_typeof(condition) === 'object' && condition !== null && typeof condition.length === 'number' && condition.length === 2) {
           if (!deepCompare(condition[0], condition[1])) {
-            throw new Error(message + " Expected ".concat(JSON.stringify(condition[0]), " equals ").concat(JSON.stringify(condition[1])));
+            throw new Error(message + ' Expected ' + JSON.stringify(condition[0]) + ' equals ' + JSON.stringify(condition[1]));
           }
         } else {
           if (!condition) {
-            throw new Error(message + " Expected ".concat(String(condition)));
+            throw new Error(message + ' Expected ' + String(condition));
           }
         }
       } else {
-        if (Array.isArray(condition) && condition.length === 2) {
+        if (_typeof(condition) === 'object' && condition !== null && typeof condition.length === 'number' && condition.length === 2) {
           if (!deepCompare(condition[0], condition[1])) {
-            throw new Error(message + " Expected ".concat(JSON.stringify(condition[0]), " equals ").concat(JSON.stringify(condition[1])));
+            throw new Error(message + ' Expected ' + JSON.stringify(condition[0]) + ' equals ' + JSON.stringify(condition[1]));
           }
         } else {
           if (!condition) {
-            throw new Error(message + " Expected ".concat(String(condition)));
+            throw new Error(message + ' Expected ' + String(condition));
           }
         }
       }

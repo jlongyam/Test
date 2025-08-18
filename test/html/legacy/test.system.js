@@ -22,23 +22,23 @@ System.import(["Test"]).then(function (Test) {
     })
   })
   describe("Test Aray", function () {
-    it("assert([a, b])", function () {
+    it("assert ([a, b])", function () {
       var a = [1, 2]
       var b = [1, 2, 3]
       a.push(3)
       assert([a, b])
     })
-    it("assert([a, b])", function () {
-      var a = [1, 2]
-      var b = [1, 2, 3]
-      a.push(4)
-      assert([a, b])
-    })
-    it("assert(a === b)", function () {
+    it("assert (a === b)", function () {
       var a = [1, 2]
       var b = [1, 2, 3]
       a.push(3)
       assert(a === b)
+    })
+    it("assert (String(a) === String(b))", function () {
+      var a = [1, 2]
+      var b = [1, 2, 3]
+      a.push(3)
+      assert(String(a) === String(b))
     })
   })
   describe("Test Object", function () {
@@ -51,7 +51,7 @@ System.import(["Test"]).then(function (Test) {
       }
       assert([a, b])
     })
-    it("assert([one, two])", function () {
+    it("assert ([one, two])", function () {
       var one = {
         value: "ONE",
       }

@@ -6,7 +6,8 @@ __Note__: If your config `type` is `module`, make sure your file end with extens
 
 ```js
 const Test = require('@jlongyam/test');
-const { describe, it, assert, run } = Test.default();
+
+const { describe, it, assert } = Test;
 
 describe("Test", () => {
   it("should 5", () => {
@@ -19,6 +20,4 @@ describe("Test", () => {
     assert(0+0 === 0);
   });
 });
-
-run();
 ```

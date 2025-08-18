@@ -10,3 +10,5 @@ How to use `Test.js` using another methods
 - Using Node CommonJS, [see](./common.md)
 - Using SystemJS, [see](./system.md)
 - Using AMD RequireJS, [see](./require.md)
+
+If prefer global network, see [CDN](./CDN.md)

@@ -2,22 +2,22 @@
 [![ReadMe](https://img.shields.io/badge/ReadMe-018EF5?logo=readme&logoColor=fff)](#)
 [![NPM](https://nodei.co/npm/@jlongyam/test.svg?style=flat&data=n,v,d&color=blue)](https://www.npmjs.com/package/@jlongyam/test)
 
-# Test #
+# Test
 
 Simple Test utility.
 
-- __deepCompare__ for nested Array and Object.
+- **deepCompare** for nested Array and Object.
 - Automatically `run`.
 
-### Install ###
+### Install
 
 ```shell
 npm i @jlongyam/test -D
 ```
 
-### Script ###
+### Script
 
-__`test/test.js`__
+**`test/test.js`**
 
 ```js
 import Test from "@jlongyam/test";
@@ -25,21 +25,22 @@ import Test from "@jlongyam/test";
 // Only 4 keywords
 const { describe, it, assert } = Test();
 
-describe("Test", () => {  // Container
-  it("should 5", () => {  // Section
-    assert(2+3 === 5);    // True
+describe("Test", () => {
+  // Container
+  it("should 5", () => {
+    // Section
+    assert(2 + 3 === 5); // True
   });
   it("should 4", () => {
-    assert(-1+5 === 5);   // False
+    assert(-1 + 5 === 5); // False
   });
   it("should 0", () => {
-    assert(0+0 === 0);
+    assert(0 + 0 === 0);
   });
 });
-
 ```
 
-__`package.json`__:
+**`package.json`**:
 
 ```JSON
 "scripts": {
@@ -47,7 +48,7 @@ __`package.json`__:
 }
 ```
 
-### Terminal ###
+### Terminal
 
 ```shell
 npm test
@@ -56,19 +57,20 @@ npm test
 ```shell
 Test
 ✔ should 5
-✖ should 4 - Failed
+✖ should 4 - Expected false
 ✔ should 0
 ```
 
-## Usage ##
+## Usage
 
 How to test `Array` or `Object`:
 
 Just like `console.assert`, comparing using `===` will fail,
 
 There are two method:
+
 - use `String(A) === String(B)`
-- use __deepCompare__ `[A,B]` bracket.
+- use **deepCompare** `[A,B]` bracket.
 
 Example:
 
@@ -99,3 +101,14 @@ describe("Test", () => {
 ```
 
 More usage see [DOCS](./docs/README.md)
+
+## Browser support
+
+| Name    | Version |
+| ------- | ------- |
+| IE      | 8+      |
+| Safari  | 5+      |
+| Firefox | 52+     |
+| Chrome  | 50+     |
+
+Using __IIFE__ script (`Test.js` and `Test.min.js`)

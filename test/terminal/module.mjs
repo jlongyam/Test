@@ -20,23 +20,23 @@ describe("Test String", () => {
 });
 
 describe("Test Aray", () => {
-  it("assert([a, b])", () => {
+  it("assert ([a, b])", () => {
     let a = [1, 2];
     let b = [1, 2, 3];
     a.push(3);
     assert([a, b]);
   });
-  it("assert([a, b])", () => {
-    let a = [1, 2];
-    let b = [1, 2, 3];
-    a.push(4);
-    assert([a, b]);
-  });
-  it("assert(a === b)", () => {
+  it("assert (a === b)", () => {
     let a = [1, 2];
     let b = [1, 2, 3];
     a.push(3);
     assert(a === b);
+  });
+  it("assert (String(a) === String(b))", () => {
+    let a = [1, 2];
+    let b = [1, 2, 3];
+    a.push(3);
+    assert(String(a) === String(b));
   });
 });
 
@@ -46,9 +46,9 @@ describe("Test Object", () => {
     let b = { value: 1 };
     assert([a, b]);
   });
-  it("assert([one, two])", () => {
-    let one = { value: 'ONE' };
-    let two = { value: 'TWO' };
+  it("assert ([one, two])", () => {
+    let one = { value: "ONE" };
+    let two = { value: "TWO" };
     assert([one, two]);
   });
 });
