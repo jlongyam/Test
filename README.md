@@ -73,26 +73,28 @@ There are two method:
 Example:
 
 ```js
-it("assert ([a, b])", () => {
-  let a = [1, 2];
-  let b = [1, 2, 3];
-  a.push(3);
-  // PASS
-  assert([a, b]);
-});
-it("assert (a === b)", () => {
-  let a = [1, 2];
-  let b = [1, 2, 3];
-  a.push(3);
-  // FAIL
-  assert(a === b);
-});
-it("assert (String(a) === String(b))", () => {
-  let a = [1, 2];
-  let b = [1, 2, 3];
-  a.push(3);
-  // PASS
-  assert(String(a) === String(b));
+describe("Test", () => {
+  it("assert ([a, b])", () => {
+    let a = [1, 2];
+    let b = [1, 2, 3];
+    a.push(3);
+    // PASS
+    assert([a, b]);
+  });
+  it("assert (a === b)", () => {
+    let a = [1, 2];
+    let b = [1, 2, 3];
+    a.push(3);
+    // FAIL
+    assert(a === b);
+  });
+  it("assert (String(a) === String(b))", () => {
+    let a = [1, 2];
+    let b = [1, 2, 3];
+    a.push(3);
+    // PASS
+    assert(String(a) === String(b));
+  });
 });
 ```
 
