@@ -9,6 +9,8 @@ Simple Test utility.
 - **deepCompare** for nested Array and Object.
 - Automatically `run`.
 
+[Demo](./test/html/index.html)
+
 ### Install
 
 ```shell
