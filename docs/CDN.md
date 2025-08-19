@@ -9,9 +9,9 @@ Other __module system__:
 - RequireJS: `https://www.jsdelivr.com/package/npm/requirejs`
     `https://cdn.jsdelivr.net/npm/requirejs@2.3.7/require.min.js`
 
-## version `0.5.0`
+## version `<major>.<minor>.<patch>` aka `<m>.<m>.<p>`
 
-- IIFE: `https://cdn.jsdelivr.net/npm/@jlongyam/test@0.5.0/dist/Test.min.js`
-- Module: `https://cdn.jsdelivr.net/npm/@jlongyam/test@0.5.0/dist/Test.min.mjs`
-- SystemJS: `https://cdn.jsdelivr.net/npm/@jlongyam/test@0.5.0/dist/system/Test.min.js`
-- RequireJS: `https://cdn.jsdelivr.net/npm/@jlongyam/test@0.5.0/dist/amd/Test.min.js`
+- IIFE: `https://cdn.jsdelivr.net/npm/@jlongyam/test@<m>.<m>.<p>/dist/Test.min.js`
+- Module: `https://cdn.jsdelivr.net/npm/@jlongyam/test@<m>.<m>.<p>/dist/Test.min.mjs`
+- SystemJS: `https://cdn.jsdelivr.net/npm/@jlongyam/test@<m>.<m>.<p>/dist/system/Test.min.js`
+- RequireJS: `https://cdn.jsdelivr.net/npm/@jlongyam/test@<m>.<m>.<p>/dist/amd/Test.min.js`
