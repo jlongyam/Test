@@ -1,3 +1,5 @@
+[![](https://data.jsdelivr.com/v1/package/npm/@jlongyam/test/badge)](https://www.jsdelivr.com/package/npm/@jlongyam/test)
+
 # CDN
 
 [jsdelivr.com/package/npm/@jlongyam/test](https://www.jsdelivr.com/package/npm/@jlongyam/test)
@@ -15,5 +17,5 @@ alias `<m>.<m>.<p>`
 
 See:
 
-- SystemJS: https://www.jsdelivr.com/package/npm/systemjs
-- RequireJS: https://www.jsdelivr.com/package/npm/requirejs
+- SystemJS: [jsdelivr.com/package/npm/systemjs](https://www.jsdelivr.com/package/npm/systemjs)
+- RequireJS: [jsdelivr.com/package/npm/requirejs](https://www.jsdelivr.com/package/npm/requirejs)
