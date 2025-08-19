@@ -100,20 +100,6 @@ describe("Test", () => {
 });
 ```
 
-### Simple `it`
-
-the `message` argument is optional, example:
-
-```js
-it(() => {
-  let one = { value: "ONE" };
-  let two = { value: "TWO" };
-  assert([one, two]); // <- report chunk
-});
-```
-
-It will reported `assert` section automatically:
-
 More usage see [DOCS](./docs/README.md)
 
 ## Browser support
@@ -127,3 +113,18 @@ More usage see [DOCS](./docs/README.md)
 
 ## Changelog
 
+### v0.6.0
+
+#### Simple `it`
+
+the `message` argument is optional, example:
+
+```js
+it(() => {
+  let one = { value: "ONE" };
+  let two = { value: "TWO" };
+  assert([one, two]); // <- report chunk
+});
+```
+
+It will reported `assert` section automatically:

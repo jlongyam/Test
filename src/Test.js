@@ -102,11 +102,12 @@ function Test() {
     fn();
     run();
   }
-  function it(description, fn) {
+  function it(description = '', fn) {
     if (arguments.length === 1) {
       fn = arguments[0];
+      description = ''
     }
-    cases.push({ description: '', fn });
+    cases.push({ description: description, fn });
   }
   function assert(condition, message) {
     message = 'Fail: ';
