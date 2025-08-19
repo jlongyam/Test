@@ -6,8 +6,9 @@
 
 Simple Test utility.
 
-- **deepCompare** for nested Array and Object.
-- Automatically `run`.
+- **deepCompare** for nested Array and Object
+- Automatically `run`
+- Automatically `message`
 
 [Demo](./test/html/index.html)
 
@@ -29,14 +30,14 @@ const { describe, it, assert } = Test();
 
 describe("Test", () => {
   // Container
-  it("should 5", () => {
+  it(() => {
     // Section
     assert(2 + 3 === 5); // True
   });
-  it("should 4", () => {
+  it(() => {
     assert(-1 + 5 === 5); // False
   });
-  it("should 0", () => {
+  it(() => {
     assert(0 + 0 === 0);
   });
 });

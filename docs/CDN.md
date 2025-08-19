@@ -15,5 +15,5 @@ alias `<m>.<m>.<p>`
 
 See:
 
-- SystemJS: `https://www.jsdelivr.com/package/npm/systemjs`
-- RequireJS: see `https://www.jsdelivr.com/package/npm/requirejs`
+- SystemJS: https://www.jsdelivr.com/package/npm/systemjs
+- RequireJS: https://www.jsdelivr.com/package/npm/requirejs
