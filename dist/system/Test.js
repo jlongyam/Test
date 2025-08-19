@@ -22,68 +22,51 @@ System.register([], function (_export, _context) {
         }
         for (var i = 0; i < cases.length; i++) {
           var _testCase = cases[i];
+          var sub0 = String(_testCase.fn);
+          var sub1 = sub0.indexOf('assert(');
+          var sub = sub0.substring(sub1, sub0.lastIndexOf(')') + 1);
           var describeText = _testCase.description.split(" - ")[0];
-          var itText = _testCase.description.split(" - ")[1];
           if (currentDescribe !== describeText) {
             currentDescribe = describeText;
             var groupHeader = document.createElement("h2");
-            setTextContent(groupHeader, currentDescribe);
+            setTextContent(groupHeader, currentDescription);
             resultsContainer.appendChild(groupHeader);
           }
           var resultElement = document.createElement("p");
           try {
             _testCase.fn();
-            setTextContent(resultElement, getPassSymbol() + " ".concat(itText));
+            setTextContent(resultElement, " ".concat(sub));
             resultElement.style.color = "green";
           } catch (error) {
-            setTextContent(resultElement, getFailSymbol() + " ".concat(itText, " - ").concat(error.message));
+            setTextContent(resultElement, " ".concat(sub, " - ").concat(error.message));
             resultElement.style.color = "red";
           }
           resultsContainer.appendChild(resultElement);
         }
         return;
       } else {
+        console.group(currentDescription);
         for (var _i = 0; _i < cases.length; _i++) {
           var testCase = cases[_i];
-          if (currentDescribe !== testCase.description.split(" - ")[0]) {
-            if (currentDescribe !== null && typeof console !== 'undefined') {
-              console.groupEnd();
-            }
-            currentDescribe = testCase.description.split(" - ")[0];
-            if (typeof console !== 'undefined') {
-              console.group(currentDescribe);
-            }
-          }
+          var sub0 = String(testCase.fn);
+          var sub1 = sub0.indexOf('assert(');
+          var sub = sub0.substring(sub1, sub0.lastIndexOf(')') + 1);
           try {
             testCase.fn();
-            if (typeof console !== 'undefined') {
-              console.log('\x1b[32m' + getPassSymbol() + ' ' + testCase.description + '\x1b[0m');
-            }
+            console.log('\x1b[32m' + sub + '\x1b[0m');
           } catch (error) {
-            if (typeof console !== 'undefined') {
-              console.error('\x1b[31m' + getFailSymbol() + ' ' + testCase.description + ' - ' + error.message + '\x1b[0m');
-            }
+            console.error('\x1b[31m' + sub + ' - ' + error.message + '\x1b[0m');
           }
         }
-        if (currentDescribe !== null && typeof console !== 'undefined') {
-          console.groupEnd();
-        }
+        console.groupEnd();
       }
     }
-
-    // Helper function to set text content
     function setTextContent(element, text) {
       if (typeof element.textContent !== 'undefined') {
         element.textContent = text;
       } else {
         element.innerText = text;
       }
-    }
-    function getPassSymbol() {
-      return '>';
-    }
-    function getFailSymbol() {
-      return '!';
     }
     function deepCompare(obj1, obj2) {
       if (_typeof(obj1) !== "object" || obj1 === null || _typeof(obj2) !== "object" || obj2 === null) {
@@ -119,12 +102,16 @@ System.register([], function (_export, _context) {
       run();
     }
     function it(description, fn) {
+      if (arguments.length === 1) {
+        fn = arguments[0];
+      }
       cases.push({
-        description: currentDescription + " - " + description,
+        description: '',
         fn: fn
       });
     }
     function assert(condition, message) {
+      message = 'Fail: ';
       if (typeof window !== "undefined") {
         if (_typeof(condition) === 'object' && condition !== null && typeof condition.length === 'number' && condition.length === 2) {
           if (!deepCompare(condition[0], condition[1])) {

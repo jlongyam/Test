@@ -17,8 +17,8 @@ System.import(["Test"]).then(function (Test) {
     it('Should say "OK"', function () {
       assert("O" + "K" === "OK")
     })
-    it('Should say "OK"', function () {
-      assert("O" + "K" === "NO")
+    it(function () {
+      assert("O" + "K" === "NO", "It should fail: ")
     })
   })
   describe("Test Aray", function () {
@@ -42,7 +42,7 @@ System.import(["Test"]).then(function (Test) {
     })
   })
   describe("Test Object", function () {
-    it("assert([a, b])", function () {
+    it("", function () {
       var a = {
         value: 1,
       }
@@ -51,7 +51,7 @@ System.import(["Test"]).then(function (Test) {
       }
       assert([a, b])
     })
-    it("assert ([one, two])", function () {
+    it(function () {
       var one = {
         value: "ONE",
       }

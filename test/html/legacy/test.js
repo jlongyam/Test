@@ -16,8 +16,8 @@ describe("Test String", function () {
   it('Should say "OK"', function () {
     assert("O" + "K" === "OK")
   })
-  it('Should say "OK"', function () {
-    assert("O" + "K" === "NO")
+  it(function () {
+    assert("O" + "K" === "NO", "It should fail: ")
   })
 })
 describe("Test Aray", function () {
@@ -41,7 +41,7 @@ describe("Test Aray", function () {
   })
 })
 describe("Test Object", function () {
-  it("assert([a, b])", function () {
+  it("", function () {
     var a = {
       value: 1,
     }
@@ -50,7 +50,7 @@ describe("Test Object", function () {
     }
     assert([a, b])
   })
-  it("assert ([one, two])", function () {
+  it(function () {
     var one = {
       value: "ONE",
     }
