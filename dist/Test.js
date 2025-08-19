@@ -10,7 +10,6 @@ function Test() {
       console.warn("Zero cases");
       return;
     }
-    var currentDescribe = null;
     if (typeof window !== "undefined") {
       var resultsContainer = document.getElementById("test-results") || document.createElement("pre");
       resultsContainer.id = "test-results";
@@ -18,18 +17,14 @@ function Test() {
       if (!document.getElementById("test-results")) {
         document.body.appendChild(resultsContainer);
       }
+      var groupHeader = document.createElement("h2");
+      setTextContent(groupHeader, currentDescription);
+      resultsContainer.appendChild(groupHeader);
       for (var i = 0; i < cases.length; i++) {
         var _testCase = cases[i];
         var sub0 = String(_testCase.fn);
         var sub1 = sub0.indexOf('assert(');
         var sub = sub0.substring(sub1, sub0.lastIndexOf(')') + 1);
-        var describeText = _testCase.description.split(" - ")[0];
-        if (currentDescribe !== describeText) {
-          currentDescribe = describeText;
-          var groupHeader = document.createElement("h2");
-          setTextContent(groupHeader, currentDescription);
-          resultsContainer.appendChild(groupHeader);
-        }
         var resultElement = document.createElement("p");
         try {
           _testCase.fn();
@@ -99,12 +94,15 @@ function Test() {
     fn();
     run();
   }
-  function it(description, fn) {
+  function it() {
+    var description = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var fn = arguments.length > 1 ? arguments[1] : undefined;
     if (arguments.length === 1) {
       fn = arguments[0];
+      description = '';
     }
     cases.push({
-      description: '',
+      description: description,
       fn: fn
     });
   }

@@ -6,7 +6,6 @@ function Test() {
       console.warn("Zero cases");
       return;
     }
-    let currentDescribe = null;
     if (typeof window !== "undefined") {
       const resultsContainer =
         document.getElementById("test-results") ||
@@ -16,18 +15,14 @@ function Test() {
       if (!document.getElementById("test-results")) {
         document.body.appendChild(resultsContainer);
       }
+      const groupHeader = document.createElement("h2");
+      setTextContent(groupHeader, currentDescription);
+      resultsContainer.appendChild(groupHeader);
       for (let i = 0; i < cases.length; i++) {
         const testCase = cases[i];
         var sub0 = String(testCase.fn);
         var sub1 = sub0.indexOf('assert(');
         var sub = sub0.substring(sub1, sub0.lastIndexOf(')') + 1);
-        const describeText = testCase.description.split(" - ")[0];
-        if (currentDescribe !== describeText) {
-          currentDescribe = describeText;
-          const groupHeader = document.createElement("h2");
-          setTextContent(groupHeader, currentDescription);
-          resultsContainer.appendChild(groupHeader);
-        }
         const resultElement = document.createElement("p");
         try {
           testCase.fn();
@@ -102,11 +97,12 @@ function Test() {
     fn();
     run();
   }
-  function it(description, fn) {
+  function it(description = '', fn) {
     if (arguments.length === 1) {
       fn = arguments[0];
+      description = ''
     }
-    cases.push({ description: '', fn });
+    cases.push({ description: description, fn });
   }
   function assert(condition, message) {
     message = 'Fail: ';
