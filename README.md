@@ -107,12 +107,22 @@ More usage see [DOCS](./docs/README.md)
 
 ## Browser support
 
+__Desktop__
+
 | Name    | Version |
 | ------- | ------- |
 | IE      | 8+      |
 | Safari  | 5+      |
 | Firefox | 52+     |
 | Chrome  | 50+     |
+
+__Mobile__
+
+| System  | Version |
+| ------- | ------- |
+| Android | API 34+ |
+| Iphone  | Latest  |
+
 
 ## Changelog
 
